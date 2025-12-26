@@ -1,6 +1,5 @@
-def main():
-    print("HELLO WORLD")
+from ttc import game
 
 
 if __name__ == '__main__':
-    main()
+    game.main()
