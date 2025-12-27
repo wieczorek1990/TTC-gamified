@@ -2,26 +2,29 @@ import sys
 
 import pygame
 
-width, height = 400, 400
+width, height = 512, 512
 caption = "Triple Triad: Console"
-milliseconds_in_a_second = 1000.0
+blue = 166, 219, 255
 
-# Background color.
-# blue = 166, 219, 255
-# r, g, b = [float(value) / 255.0 for value in blue]
+windows_size = width, height
+r, g, b = [float(value) / 255.0 for value in blue]
 
 
 def init():
     pygame.init()
-    pygame.display.set_mode((width, height), flags=pygame.OPENGL | pygame.DOUBLEBUF, vsync=True)
     pygame.display.set_caption(caption)
+
+    screen = pygame.display.set_mode(windows_size)
+
+    return screen
 
 
 class Scene:
-    @staticmethod
-    def render():
-        now = pygame.time.get_ticks() / milliseconds_in_a_second
-        print(now)
+    def __init__(self, screen):
+        self.screen = screen
+
+    def render(self):
+        self.screen.fill(blue)
 
 
 class Game:
@@ -38,8 +41,8 @@ class Game:
 
 
 def main():
-    init()
-    scene = Scene()
+    screen = init()
+    scene = Scene(screen)
     game = Game(scene)
 
     while True:
