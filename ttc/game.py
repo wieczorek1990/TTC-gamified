@@ -1,6 +1,6 @@
-import sys
-
 import pygame
+
+from ttc import exceptions
 
 width, height = 512, 512
 caption = "Triple Triad: Console"
@@ -35,15 +35,16 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
+                raise exceptions.QuitGameException
+
         self.scene.render()
         pygame.display.flip()
 
 
-def main():
+def main(scene_class, game_class):
     screen = init()
-    scene = Scene(screen)
-    game = Game(scene)
+    scene = scene_class(screen)
+    game = game_class(scene)
 
     while True:
         game.tick()

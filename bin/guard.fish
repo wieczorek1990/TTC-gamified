@@ -3,4 +3,5 @@
 
 cd (status dirname)/..
 echo 'Guard!' &&
- black ttc/
+ black ttc/ &&
+ echo 'Done.'
